@@ -1,0 +1,23 @@
+﻿@model PruebaEF6.Models.Player
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("CreatePlayer", "Player", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(model => model.FirstName)
+        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(model => model.LastName)
+        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Country_Id, labelText: "Country");
+        @Html.DropDownListFor(model => model.Country_Id, (List<SelectListItem>) ViewBag.Countries, new { @class = "form-select" })
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}

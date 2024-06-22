@@ -1,0 +1,21 @@
+﻿@model PruebaEF6.Models.Team
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("CreateTeam", "Team", FormMethod.Post, null))
+{
+    <div>
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        </div>
+        <div class="mb-3">
+            @Html.LabelFor(expression: model => model.League_Id, htmlAttributes: new { @class = "form-label" }, labelText: "League")
+            @Html.DropDownListFor(model => model.League_Id, (List<SelectListItem>)ViewBag.Leagues, new { @class = "form-select" })
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+}

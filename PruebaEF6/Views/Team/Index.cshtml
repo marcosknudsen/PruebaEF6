@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PruebaEF6.Models.Team>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div>
+    <h1>Teams</h1>
+</div>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Country
+                </th>
+                <th>
+                    League
+                </th>
+                <th>
+                    Name
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var team in Model)
+            {
+                <tr>
+                    <td>
+                        @team.Id
+                    </td>
+                    <td>
+                        @team.League.Country.Code
+                    </td>
+                    <td>
+                        @team.League.Name
+                    </td>
+                    <td>
+                        @team.Name
+                    </td>
+                    <td class="d-flex justify-content-end gap-2">
+                        @Html.ActionLink("Edit", "Edit", new { id = team.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "Delete", new { id = team.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-primary" })
+</div>

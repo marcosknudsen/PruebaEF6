@@ -1,0 +1,17 @@
+﻿@model PruebaEF6.Models.League
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("CreateLeague","League", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(model => model.Country, "Country", null)
+        @Html.DropDownListFor(model => model.Country_Id, (List<SelectListItem>)ViewBag.Countries, new { @class = "form-select" })
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+}
