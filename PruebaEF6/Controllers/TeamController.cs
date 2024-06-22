@@ -1,10 +1,12 @@
-﻿using PruebaEF6.Models;
+﻿using Microsoft.Ajax.Utilities;
+using PruebaEF6.Models;
 using PruebaEF6.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace PruebaEF6.Controllers
@@ -13,6 +15,7 @@ namespace PruebaEF6.Controllers
     {
         private TeamRepository teamRepository = new TeamRepository();
         private LeagueRepository leagueRepository = new LeagueRepository();
+        private CountryRepository countryRepository = new CountryRepository();
 
         public async Task<ActionResult> Index()
         {
@@ -30,8 +33,8 @@ namespace PruebaEF6.Controllers
 
         public async Task<ActionResult> Create()
         {
-            IEnumerable<League> leagues = await leagueRepository.GetLeagues();
-            ViewBag.Leagues = leagues.Select(x => new SelectListItem() { Text = x.Name, Value = x.Id.ToString() }).ToList();
+            IEnumerable<Country> countries = await countryRepository.GetCountries();
+            ViewBag.Countries = countries.Select(x => new SelectListItem() { Text = x.Name, Value = x.Id.ToString() }).ToList();
             Team team = new Team();
             return View(team);
         }
@@ -61,6 +64,21 @@ namespace PruebaEF6.Controllers
         {
             await teamRepository.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> GetLeaguesByCountry(int id)
+        {
+            var leagues= (await leagueRepository.GetLeaguesByCountry(id)).Select(x =>
+            {
+                return new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                };
+            });
+
+            return Json(leagues);
         }
     }
 }

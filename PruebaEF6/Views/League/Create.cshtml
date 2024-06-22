@@ -5,11 +5,11 @@
 
 @using (Html.BeginForm("CreateLeague","League", FormMethod.Post))
 {
-    <div>
+    <div class="mb-3">
         @Html.LabelFor(model => model.Country, "Country", null)
         @Html.DropDownListFor(model => model.Country_Id, (List<SelectListItem>)ViewBag.Countries, new { @class = "form-select" })
     </div>
-    <div>
+    <div class="mb-3">
         @Html.LabelFor(model => model.Name)
         @Html.TextBoxFor(model => model.Name, htmlAttributes: new { @class = "form-control" })
     </div>

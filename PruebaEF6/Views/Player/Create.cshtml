@@ -7,15 +7,15 @@
 
 @using (Html.BeginForm("CreatePlayer", "Player", FormMethod.Post))
 {
-    <div>
+    <div class="mb-3">
         @Html.LabelFor(model => model.FirstName)
         @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
     </div>
-    <div>
+    <div class="mb-3">
         @Html.LabelFor(model => model.LastName)
         @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
     </div>
-    <div>
+    <div class="mb-3">
         @Html.LabelFor(model => model.Country_Id, labelText: "Country");
         @Html.DropDownListFor(model => model.Country_Id, (List<SelectListItem>) ViewBag.Countries, new { @class = "form-select" })
     </div>

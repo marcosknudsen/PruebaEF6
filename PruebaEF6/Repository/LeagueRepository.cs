@@ -40,5 +40,10 @@ namespace PruebaEF6.Repository
             _context.League.AddOrUpdate(league);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<League>> GetLeaguesByCountry(int countryId)
+        {
+            return await _context.League.Where(x => x.Country_Id == countryId).ToListAsync();
+        }
     }
 }
