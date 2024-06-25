@@ -1,11 +1,9 @@
 ﻿using PruebaEF6.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace PruebaEF6.Repository
 {

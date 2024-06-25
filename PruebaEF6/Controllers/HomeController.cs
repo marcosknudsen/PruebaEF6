@@ -1,7 +1,4 @@
-﻿using PruebaEF6.Models;
-using PruebaEF6.Repository;
-using System;
-using System.Collections.Generic;
+﻿using PruebaEF6.Repository;
 using System.Web.Mvc;
 
 namespace PruebaEF6.Controllers

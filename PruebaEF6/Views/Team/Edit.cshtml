@@ -5,7 +5,7 @@
 
 <h2>Edit: Team</h2>
 
-@using (Html.BeginForm("EditTeam", "Team", new { id = Model.Id }, FormMethod.Post, null))
+@using (Html.BeginForm("EditTeam", "Team", FormMethod.Post))
 {
     <div>
         <div class="mb-3">
@@ -13,10 +13,31 @@
             @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
         </div>
         <div class="mb-3">
-            @Html.LabelFor(model => model.League.Id, new { @class = "form-label" })
-            @Html.DropDownListFor(model => model.League.Id, (List<SelectListItem>)ViewBag.Leagues, new { @class = "form-select" })
+            @Html.LabelFor(expression: model => model.League.Country_Id, htmlAttributes: new { @class = "form-label" }, labelText: "Country")
+            @Html.DropDownListFor(model => model.League.Country_Id, (List<SelectListItem>)ViewBag.Countries, new { @class = "form-select", id = "selectCountry" })
         </div>
-
+        <div class="mb-3">
+            @Html.LabelFor(expression: model => model.League_Id, htmlAttributes: new { @class = "form-label" }, labelText: "League")
+            @Html.DropDownListFor(model => model.League_Id, Enumerable.Empty<SelectListItem>(), new { @class = "form-select", id = "selectLeague" })
+        </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </div>
+}
+
+@section Scripts{
+    <script src="~/Utils/updateLeagues.js"></script>
+
+    <script>
+        const urlGetLeagues = "@Url.Action("GetLeaguesByCountry")";
+        $(async function () {
+
+            updateLeagues();
+
+            $("#selectCountry").change(async function () {
+                await updateLeagues();
+            });
+
+
+        })
+    </script>
 }

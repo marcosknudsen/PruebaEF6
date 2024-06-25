@@ -1,5 +1,4 @@
 ﻿using PruebaEF6.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
