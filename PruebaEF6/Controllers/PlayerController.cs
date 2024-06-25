@@ -8,8 +8,8 @@ namespace PruebaEF6.Controllers
 {
     public class PlayerController : Controller
     {
-        private PlayerRepository playerRepository = new PlayerRepository();
-        private CountryRepository countryRepository = new CountryRepository();
+        private readonly PlayerRepository playerRepository = new PlayerRepository();
+        private readonly CountryRepository countryRepository = new CountryRepository();
         public async Task<ActionResult> Index()
         {
             List<Player> players = await playerRepository.GetPlayers();

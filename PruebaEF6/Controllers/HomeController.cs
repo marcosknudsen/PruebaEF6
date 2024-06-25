@@ -5,7 +5,7 @@ namespace PruebaEF6.Controllers
 {
     public class HomeController : Controller
     {
-        private PlayerRepository playerRepository=new PlayerRepository();
+        private readonly PlayerRepository playerRepository=new PlayerRepository();
         public ActionResult Index()
         {
             return View();

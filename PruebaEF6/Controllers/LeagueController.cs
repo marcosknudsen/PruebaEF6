@@ -8,9 +8,9 @@ namespace PruebaEF6.Controllers
 {
     public class LeagueController : Controller
     {
-        private LeagueRepository leagueRepository = new LeagueRepository();
-        private CountryRepository countryRepository = new CountryRepository();
-        private TeamRepository teamRepository = new TeamRepository();
+        private readonly LeagueRepository leagueRepository = new LeagueRepository();
+        private readonly CountryRepository countryRepository = new CountryRepository();
+        private readonly TeamRepository teamRepository = new TeamRepository();
 
         public async Task<ActionResult> Index()
         {
