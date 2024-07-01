@@ -9,7 +9,7 @@
 {
     <div class="mb-3">
         @Html.LabelFor(model => model.Country, "Country", null)
-        @Html.DropDownListFor(model => model.Country_Id, (List<SelectListItem>)ViewBag.Countries, new { @class = "form-select" })
+        @Html.DropDownListFor(model => model.Country_Id, (IEnumerable<SelectListItem>)ViewBag.Countries, new { @class = "form-select" })
     </div>
     <div class="mb-3">
         @Html.LabelFor(model => model.Name)

@@ -1,6 +1,7 @@
 ﻿using PruebaEF6.Models;
 using PruebaEF6.Repository;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -22,7 +23,7 @@ namespace PruebaEF6.Controllers
         {
             League league = new League();
 
-            List<SelectListItem> leagues = (await countryRepository.GetCountries()).ConvertAll(x =>
+            ViewBag.Countries=(await countryRepository.GetCountries()).Select(x =>
             {
                 return new SelectListItem()
                 {
@@ -30,8 +31,6 @@ namespace PruebaEF6.Controllers
                     Value = x.Id.ToString(),
                 };
             });
-
-            ViewBag.Countries = leagues;
 
             return View(league);
         }
@@ -47,7 +46,7 @@ namespace PruebaEF6.Controllers
         {
             League league=await leagueRepository.GetById(id);
 
-            List<SelectListItem> leagues = (await countryRepository.GetCountries()).ConvertAll(x =>
+            ViewBag.Countries = (await countryRepository.GetCountries()).Select(x =>
             {
                 return new SelectListItem()
                 {
@@ -55,8 +54,6 @@ namespace PruebaEF6.Controllers
                     Value = x.Id.ToString(),
                 };
             });
-
-            ViewBag.Countries = leagues;
 
             return View(league);
         }

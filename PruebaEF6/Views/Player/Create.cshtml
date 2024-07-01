@@ -17,7 +17,7 @@
     </div>
     <div class="mb-3">
         @Html.LabelFor(model => model.Country_Id, labelText: "Country");
-        @Html.DropDownListFor(model => model.Country_Id, (List<SelectListItem>) ViewBag.Countries, new { @class = "form-select" })
+        @Html.DropDownListFor(model => model.Country_Id, (IEnumerable<SelectListItem>) ViewBag.Countries, new { @class = "form-select" })
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 }

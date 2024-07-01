@@ -21,16 +21,14 @@ namespace PruebaEF6.Controllers
 
         public async Task<ActionResult> Edit(int id)
         {
-            IEnumerable<Country> countries = await countryRepository.GetCountries();
-            ViewBag.Countries = countries.Select(x => new SelectListItem() { Text = x.Name, Value = x.Id.ToString() }).ToList();
+            ViewBag.Countries = (await countryRepository.GetCountries()).Select(x => new SelectListItem() { Text = x.Name, Value = x.Id.ToString() });
             Team team = await teamRepository.GetById(id);
             return View(team);
         }
 
         public async Task<ActionResult> Create()
         {
-            IEnumerable<Country> countries = await countryRepository.GetCountries();
-            ViewBag.Countries = countries.Select(x => new SelectListItem() { Text = x.Name, Value = x.Id.ToString() }).ToList();
+            ViewBag.Countries = (await countryRepository.GetCountries()).Select(x => new SelectListItem() { Text = x.Name, Value = x.Id.ToString() });
             Team team = new Team();
             return View(team);
         }
@@ -65,7 +63,7 @@ namespace PruebaEF6.Controllers
         [HttpPost]
         public async Task<JsonResult> GetLeaguesByCountry(int id)
         {
-            var leagues= (await leagueRepository.GetLeaguesByCountry(id)).Select(x =>
+            IEnumerable<SelectListItem> leagues= (await leagueRepository.GetLeaguesByCountry(id)).Select(x =>
             {
                 return new SelectListItem()
                 {

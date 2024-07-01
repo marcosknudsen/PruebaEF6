@@ -14,7 +14,7 @@
         </div>
         <div class="mb-3">
             @Html.LabelFor(expression: model => model.League.Country_Id, htmlAttributes: new { @class = "form-label" }, labelText: "Country")
-            @Html.DropDownListFor(model => model.League.Country_Id, (List<SelectListItem>)ViewBag.Countries, new { @class = "form-select", id = "selectCountry" })
+            @Html.DropDownListFor(model => model.League.Country_Id, (IEnumerable<SelectListItem>)ViewBag.Countries, new { @class = "form-select", id = "selectCountry" })
         </div>
         <div class="mb-3">
             @Html.LabelFor(expression: model => model.League_Id, htmlAttributes: new { @class = "form-label" }, labelText: "League")
