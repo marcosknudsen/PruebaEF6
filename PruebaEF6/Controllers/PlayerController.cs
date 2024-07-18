@@ -10,6 +10,7 @@ namespace PruebaEF6.Controllers
     public class PlayerController : Controller
     {
         private readonly PlayerRepository playerRepository = new PlayerRepository();
+        private readonly TeamRepository teamRepository = new TeamRepository();
         private readonly CountryRepository countryRepository = new CountryRepository();
         public async Task<ActionResult> Index()
         {

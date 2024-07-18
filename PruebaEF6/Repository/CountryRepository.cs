@@ -22,9 +22,8 @@ namespace PruebaEF6.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteCountry(int id)
+        public async Task Delete(Country country)
         {
-            Country country = await _context.Country.FindAsync(id);
             _context.Country.Remove(country);
             await _context.SaveChangesAsync();
         }

@@ -54,7 +54,14 @@ namespace PruebaEF6.Controllers
         [HttpPost]
         public async Task<ActionResult> DeleteCountry(int id)
         {
-            await countryRepository.DeleteCountry(id);
+            var country = await countryRepository.GetCountry(id);
+
+            if (country == null)
+            {
+                return RedirectToAction("NotFound");
+            }
+
+            await countryRepository.Delete(country);
             return RedirectToAction("Index");
         }
     }

@@ -1,5 +1,6 @@
 ﻿using PruebaEF6.Models;
 using PruebaEF6.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace PruebaEF6.Controllers
         {
             League league = new League();
 
-            ViewBag.Countries=(await countryRepository.GetCountries()).Select(x =>
+            ViewBag.Countries = (await countryRepository.GetCountries()).Select(x =>
             {
                 return new SelectListItem()
                 {
@@ -44,7 +45,7 @@ namespace PruebaEF6.Controllers
 
         public async Task<ActionResult> Edit(int id)
         {
-            League league=await leagueRepository.GetById(id);
+            League league = await leagueRepository.GetById(id);
 
             ViewBag.Countries = (await countryRepository.GetCountries()).Select(x =>
             {
@@ -89,6 +90,21 @@ namespace PruebaEF6.Controllers
 
             await leagueRepository.Delete(league);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> GetLeaguesByCountry(int id)
+        {
+            IEnumerable<SelectListItem> leagues = (await leagueRepository.GetLeaguesByCountry(id)).Select(x =>
+            {
+                return new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                };
+            });
+
+            return Json(leagues);
         }
     }
 }

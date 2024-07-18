@@ -35,10 +35,7 @@ namespace PruebaEF6.Repository
 
         public async Task Edit(Team team)
         {
-            var foundTeam = await _context.Team.FirstOrDefaultAsync(p => p.Id == team.Id);
-            foundTeam.Name = team.Name;
-            foundTeam.League_Id = team.League.Id;
-            _context.Team.AddOrUpdate(foundTeam);
+            _context.Team.AddOrUpdate(team);
             await _context.SaveChangesAsync();
         }
 
@@ -46,6 +43,11 @@ namespace PruebaEF6.Repository
         {
             _context.Team.Add(team);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Team>> GetTeamsByLeague(int leagueId)
+        {
+            return await _context.Team.Where(x => x.League_Id == leagueId).ToListAsync();
         }
     }
 }

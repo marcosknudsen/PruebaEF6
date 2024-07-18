@@ -1,9 +1,11 @@
 ﻿using PruebaEF6.Models;
 using PruebaEF6.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+
 
 namespace PruebaEF6.Controllers
 {
@@ -61,9 +63,9 @@ namespace PruebaEF6.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> GetLeaguesByCountry(int id)
+        public async Task<JsonResult> GetTeamsByLeague(int id=0)
         {
-            IEnumerable<SelectListItem> leagues= (await leagueRepository.GetLeaguesByCountry(id)).Select(x =>
+            IEnumerable<SelectListItem> teams = (await teamRepository.GetTeamsByLeague(id)).Select(x =>
             {
                 return new SelectListItem()
                 {
@@ -72,7 +74,7 @@ namespace PruebaEF6.Controllers
                 };
             });
 
-            return Json(leagues);
+            return Json(teams);
         }
     }
 }

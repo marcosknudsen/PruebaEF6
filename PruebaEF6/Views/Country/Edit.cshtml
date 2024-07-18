@@ -5,9 +5,8 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm("CreateCountry", "Country", new { id = Model.Id }, FormMethod.Post, new { @class = "form-control" }))
+@using (Html.BeginForm("EditCountry", "Country", new { id = Model.Id }, FormMethod.Post, new { @class = "form-control" }))
 {
-    @Html.HiddenFor(model => model.Id)
     <div class="mb-3">
         @Html.LabelFor(model => model.Code)
         @Html.TextBoxFor(model => model.Code, new { @class = "form-control" })

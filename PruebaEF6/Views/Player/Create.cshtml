@@ -8,16 +8,59 @@
 @using (Html.BeginForm("CreatePlayer", "Player", FormMethod.Post))
 {
     <div class="mb-3">
-        @Html.LabelFor(model => model.FirstName)
+        @Html.LabelFor(model => model.FirstName, "Nombre")
         @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
     </div>
     <div class="mb-3">
-        @Html.LabelFor(model => model.LastName)
+        @Html.LabelFor(model => model.LastName, "Apellido")
         @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
     </div>
     <div class="mb-3">
-        @Html.LabelFor(model => model.Country_Id, labelText: "Country");
-        @Html.DropDownListFor(model => model.Country_Id, (IEnumerable<SelectListItem>) ViewBag.Countries, new { @class = "form-select" })
+        @Html.Label("CountrySelector", labelText: "Country")
+        @Html.DropDownList("CountrySelector", (IEnumerable<SelectListItem>)ViewBag.Countries, new { @class = "form-select" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("LeagueSelector", "League", new { @class = "form-label" })
+        @Html.DropDownList("LeagueSelector", Enumerable.Empty<SelectListItem>(), new { @class = "form-select" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("TeamSelector", labelText: "Team")
+        @Html.DropDownList("TeamSelector", Enumerable.Empty<SelectListItem>(), new { @class = "form-select" })
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
+}
+
+
+@section Scripts{
+    <script src="~/Utils/updateLeagues.js"></script>
+    <script src="~/Utils/updateTeams1.js"></script>
+
+    <script>
+
+        let urlGetLeagues
+        let urlGetTeams
+
+
+        $(async function () { 
+
+
+            urlGetLeagues = "@Url.Action("GetLeaguesByCountry","League")"
+
+            urlGetTeams = "@Url.Action("GetTeamsByLeague", "Team")"
+
+            await updateLeagues(urlGetLeagues);
+            await updateTeams1(urlGetTeams);
+
+
+            $("#CountrySelector").change(async function () {
+                await updateLeagues(urlGetLeagues);
+                await updateTeams1(urlGetTeams);
+            });
+
+            $("#LeagueSelector").change(async function () {
+                await updateTeams1(urlGetTeams);
+            });
+        })
+
+    </script>
 }

@@ -1,0 +1,12 @@
+﻿@model PruebaEF6.Models.Country
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+@using (Html.BeginForm("DeleteCountry", "Country", new { id = Model.Id }, FormMethod.Post, new { @class = "form-control" }))
+{
+    <button type="submit" class="btn btn-danger">Delete</button>
+    @Html.ActionLink("Cancel", "Index", "Country", null, new { @class = "btn btn-primary" })
+}

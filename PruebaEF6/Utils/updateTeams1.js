@@ -1,6 +1,6 @@
-﻿async function updateLeagues() {
-    const countryId = await $("#CountrySelector").val();
-    let response = await fetch(urlGetLeagues + "?id=" + countryId, {
+﻿async function updateTeams1() {
+    const countryId = await $("#LeagueSelector").val();
+    let response = await fetch(urlGetTeams + "?id=" + countryId, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -9,5 +9,5 @@
     })
     const json = await response.json();
     const leagues = json.map(league => `<option value="${league.Value}">${league.Text}</option>`);
-    $("#LeagueSelector").html(leagues);
+    $("#TeamSelector").html(leagues);
 }
