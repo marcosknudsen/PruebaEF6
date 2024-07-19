@@ -1,11 +1,11 @@
 ﻿@model PruebaEF6.Models.Player
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
-@using (Html.BeginForm("CreatePlayer", "Player", FormMethod.Post))
+@using (Html.BeginForm("EditPlayer", "Player", new { id = Model.Id }, FormMethod.Post))
 {
     <div class="mb-3">
         @Html.LabelFor(model => model.FirstName, "Nombre")

@@ -49,5 +49,26 @@ namespace PruebaEF6.Controllers
             await playerRepository.Create(player);
             return RedirectToAction("Index");
         }
+
+        public async Task<ActionResult> Edit(int id)
+        {
+            Player player = await playerRepository.GetPlayerById(id);
+            ViewBag.Countries = (await countryRepository.GetCountries()).Select(x =>
+            {
+                return new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                };
+            });
+            return View(player);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> EditPlayer(Player player)
+        {
+            await playerRepository.Update(player);
+            return RedirectToAction("Index");
+        }
     }
 }

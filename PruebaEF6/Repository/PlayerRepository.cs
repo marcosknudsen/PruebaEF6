@@ -32,5 +32,11 @@ namespace PruebaEF6.Repository
             _context.Player.Add(player);
             await _context.SaveChangesAsync();
         }
+
+        public async Task Update(Player player)
+        {
+            _context.Entry(player).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
     }
 }

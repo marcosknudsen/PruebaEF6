@@ -9,22 +9,22 @@
     <thead>
         <tr>
             <th>
-                Country
-            </th>
-            <th>
                 Name
             </th>
             <th>
                 Team
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var player in Model)
         {
             <tr>
-                <td>@player.Country.Code</td>
                 <td>@player.FirstName @player.LastName</td>
+                <td>
+                    @player.Team.Name
+                </td>
                 <td class="d-flex justify-content-end gap-1 me-1">
                     @Html.ActionLink("Edit", "Edit", new { id = player.Id }, new { @class = "btn btn-primary" })
                     @Html.ActionLink("Delete", "Delete", new { id = player.Id }, new { @class = "btn btn-danger" })

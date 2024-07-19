@@ -1,7 +1,14 @@
-﻿
+﻿@model PruebaEF6.Models.Player
 @{
     ViewBag.Title = "Delete";
 }
 
 <h2>Delete</h2>
 
+@using (Html.BeginForm("DeletePlayer", "Player", new { id = Model.Id }, FormMethod.Post))
+{
+    <div>
+        <button class="btn btn-danger" type="submit">Delete</button>
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-primary" })
+    </div>
+}
