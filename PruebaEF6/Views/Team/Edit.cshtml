@@ -14,11 +14,11 @@
         </div>
         <div class="mb-3">
             @Html.Label("Country", "Country", new { @class = "form-label" })
-            @Html.DropDownList("Country", (IEnumerable<SelectListItem>)ViewBag.Countries, new { @class = "form-select", id = "selectCountry" })
+            @Html.DropDownList("Country", (IEnumerable<SelectListItem>)ViewBag.Countries, new { @class = "form-select", id = "CountrySelector" })
         </div>
         <div class="mb-3">
-            @Html.LabelFor(expression: model => model.League_Id, htmlAttributes: new { @class = "form-label" }, labelText: "League")
-            @Html.DropDownListFor(model => model.League_Id, Enumerable.Empty<SelectListItem>(), new { @class = "form-select", id = "selectLeague" })
+            @Html.LabelFor(model => model.League_Id,"League",new { @class = "form-label" })
+            @Html.DropDownListFor(model => model.League_Id, Enumerable.Empty<SelectListItem>(), new { @class = "form-select", id = "LeagueSelector" })
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </div>
@@ -28,15 +28,14 @@
     <script src="~/Utils/updateLeagues.js"></script>
 
     <script>
-        const urlGetLeagues = "@Url.Action("GetLeaguesByCountry")";
+            urlGetLeagues = "@Url.Action("GetLeaguesByCountry","League")"
         $(async function () {
 
-            updateLeagues();
-
-            $("#selectCountry").change(async function () {
+            await updateLeagues();
+            console.log("A")
+            $("#CountrySelector").change(async function () {
                 await updateLeagues();
             });
-
 
         })
     </script>
